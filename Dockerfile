@@ -8,4 +8,4 @@ COPY install_packages.R /home/user01/
 RUN Rscript install_packages.R
 COPY sis.R /home/user01/
 COPY data.txt /home/user01/
-RUN echo "Rscript sis.R \$1 \$2" > run.sh
+COPY run.sh /home/user01/
