@@ -7,7 +7,7 @@ then
 else
     parallel=$3
 fi
-
+rm p_* y_*
 # split input file
 split -l2 $1 p_
 NPROC=0
