@@ -14,7 +14,7 @@ NPROC=0
 for i in $(ls p_*)
 do
     echo "running rscript with $i"
-    Rscript sis.R $i y_$i #> /dev/null &
+    Rscript /home/user01/sis.R $i y_$i #> /dev/null &
     NPROC=$(($NPROC+1))
     if [ "$NPROC" -ge $parallel ]
     then
