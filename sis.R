@@ -22,8 +22,8 @@ comparts <- lsoda(V, 1:Tmax, deriv, parms=par)
 count = 0
 for (i in 1:Tmax)
 {
-  write.table(as.matrix(t(c(count,"I",i,"I",comparts[i,3]))), file=paste(path, args[2], sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+  write.table(as.matrix(t(c(count,"I",i,"I",comparts[i,3]))), file=args[2], quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
   count = count + 1
-  write.table(as.matrix(t(c(count,"S",i,"S",comparts[i,2]))), file=paste(path, args[2], sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+  write.table(as.matrix(t(c(count,"S",i,"S",comparts[i,2]))), file=args[2], quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
   count = count + 1
 }
