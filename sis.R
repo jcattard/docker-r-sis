@@ -3,7 +3,7 @@ args <- commandArgs(trailingOnly = TRUE)
 path = "./"
 file.create(paste(path, args[2], sep=""))
 #setwd(path)
-data <- read.table(paste(path, "/home/user01/data.txt", sep=""), header=TRUE, sep="\t", na.strings="NA", dec=".")
+data <- read.table("/home/user01/data.txt", header=TRUE, sep="\t", na.strings="NA", dec=".")
 deriv <- function(t,y,p)
 {
   c = 1
