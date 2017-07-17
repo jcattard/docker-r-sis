@@ -1,9 +1,9 @@
 library(deSolve)
 args <- commandArgs(trailingOnly = TRUE)
-path = "/home/user01/"
+path = "./"
 file.create(paste(path, args[2], sep=""))
 #setwd(path)
-data <- read.table(paste(path, "data.txt", sep=""), header=TRUE, sep="\t", na.strings="NA", dec=".")
+data <- read.table(paste(path, "/home/user01/data.txt", sep=""), header=TRUE, sep="\t", na.strings="NA", dec=".")
 deriv <- function(t,y,p)
 {
   c = 1
