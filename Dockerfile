@@ -9,4 +9,5 @@ RUN Rscript install_packages.R
 COPY sis.R /home/user01/
 COPY data.txt /home/user01/
 COPY run.sh /home/user01/
+COPY run-step.sh /home/user01/
 
