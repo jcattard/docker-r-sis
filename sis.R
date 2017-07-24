@@ -103,21 +103,30 @@ par <- list(beta=par[par[,1]=="beta",2], gamma=par[par[,1]=="gamma",2])
 ## computation
 comparts <- lsoda(V, time, deriv, parms=par)
 
-print(comparts)
-## write observation
-count = 0
-for (i in 1:length(comparts[,1]))
-{
-  write.table(as.matrix(t(c(count,"S",comparts[i,1],"S",comparts[i,2]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
-  count = count + 1
-  write.table(as.matrix(t(c(count,"I",comparts[i,1],"I",comparts[i,3]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
-  count = count + 1
-}
 
-## write xnew
+## write outputs
 if(step)
 {
+    ## write observations
+    count = 0
+    write.table(as.matrix(t(c(count,"S",comparts[length(comparts[,1]),1],"S",comparts[length(comparts[,2]),2]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+    count = count + 1
+    write.table(as.matrix(t(c(count,"I",comparts[length(comparts[,1]),1],"I",comparts[length(comparts[,3]),3]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+    count = count + 1
+
+    ## write xnew
     x_new = file.create(paste(path, opt["state-output-file"], sep=""))
     write.table(as.matrix(t(c("S",comparts[length(comparts[,2]),2]))), file=toString(opt["state-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
     write.table(as.matrix(t(c("I",comparts[length(comparts[,3]),3]))), file=toString(opt["state-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+}else
+{
+    ## write observations
+    count = 0
+    for (i in 1:length(comparts[,1]))
+    {
+        write.table(as.matrix(t(c(count,"S",comparts[i,1],"S",comparts[i,2]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+        count = count + 1
+        write.table(as.matrix(t(c(count,"I",comparts[i,1],"I",comparts[i,3]))), file=toString(opt["observation-output-file"]), quote=FALSE, row.names=FALSE, col.names=FALSE, append=TRUE, sep=",")
+        count = count + 1
+    }
 }
